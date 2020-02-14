@@ -1,4 +1,4 @@
-from rasp.solar_tracker import SolarTracker
+from solar_tracker import SolarTracker
 
 if __name__ == "__main__":
     ARDUINO_ADDRESS = 0X08

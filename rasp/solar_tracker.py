@@ -5,8 +5,8 @@ import signal
 
 from time import sleep
 
-from rasp.controller import GPIO, Driver, InvalidMovementException
-from rasp.i2c_connector import (I2C, InvalidLDRListException,
+from controller import GPIO, Driver, InvalidMovementException
+from i2c_connector import (I2C, InvalidLDRListException,
                                 InvalidLDRListValuesException)
 
 logging.config.fileConfig(fname='logging.conf', disable_existing_loggers=False)
@@ -109,9 +109,9 @@ class SolarTracker:
 
     def run(self, strategy="empty"):
         """
-        Execute the tracking process, request new LDR values twice per second,
-        validates them, compares them accordingly to the strategy and execute
-        the movement.
+        Execute the tracking process, request new LDR values five times 
+	per second, validates them, compares them accordingly to the
+	strategy and execute the movement.
         
         Keyword Arguments:
             strategy {str} -- Strategy used by the tracking system.
@@ -124,7 +124,7 @@ class SolarTracker:
             raise Exception("Invalid strategy!")
         while True:
             try:
-                sleep(0.5)
+                sleep(0.2)
                 ldr_values = self.i2c.get_ldr_values()
 
             except (IOError, OSError) as e:

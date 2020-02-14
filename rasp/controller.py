@@ -5,7 +5,7 @@ import time
 
 from enum import Enum
 
-import rasp.gpio_connector as GPIO
+import gpio_connector as GPIO
 
 logging.config.fileConfig(fname='logging.conf', disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
@@ -106,7 +106,7 @@ class Movement(Enum):
     @classmethod
     def left(cls, output_pins, steps):
         """ 
-        Rotates the panels clockwise.
+        Rotates the panels anti-clockwise.
         
         Arguments:
             output_pins {list} -- List of output pins
@@ -126,7 +126,7 @@ class Movement(Enum):
     @classmethod
     def right(cls, output_pins, steps):
         """
-        Rotate the panels anti-clockwise
+        Rotate the panels clockwise
 
         Arguments:
             output_pins {list} -- List of output pins
