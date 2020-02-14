@@ -36,6 +36,7 @@ jobs:
            . venv/bin/activate
            pwd
            ls -la
+           cd rasp/
            python3 -m pytest tests
 
   deploy:
