@@ -1,5 +1,4 @@
-from smbus2 import SMBus
-
+import quick2wire.i2c as i2c
 
 class I2C:
     """
@@ -8,7 +7,6 @@ class I2C:
     """
 
     def __init__(self, address, number_of_ldrs=2):
-        self.connector = SMBus(1)
         self.SLAVE_ADDRESS = address
         self.number_of_ldrs = number_of_ldrs
 
@@ -19,8 +17,13 @@ class I2C:
         Returns:
             list -- List with n bytes representing the LDR values.
         """
-        return self.connector.read_i2c_block_data(self.SLAVE_ADDRESS, 1,
-                                                  (self.number_of_ldrs * 2))
+
+        with i2c.I2CMaster() as bus:
+            data = bus.transaction(i2c.reading(self.SLAVE_ADDRESS,
+                                               self.number_of_ldrs * 2))
+            ldr_values = [data[0][i] for i in range(self.number_of_ldrs *2)]
+            
+            return ldr_values
 
     def get_ldr_values(self):
         """

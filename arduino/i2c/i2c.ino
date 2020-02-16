@@ -1,12 +1,12 @@
 #include <Wire.h>
 
-#define SlaveAddress 0x8
+#define SLAVE_ADDRESS 0x8
 
 void sendData();
 
 void setup() {
   // Start the connections as a slave
-  Wire.begin(SlaveAddress);
+  Wire.begin(SLAVE_ADDRESS);
   // When the R_Pi requests data from the arduino, call the sendData function.
   Wire.onRequest(sendData);
 }
@@ -29,21 +29,19 @@ void ldrIntToByte (int ldrValues[], byte ldrByteValues[], int ldrLength) {
 
 void sendData() {
   // Collects the data from the LDRs, storing it within the ldrIntValues array
+
   int ldrIntValues[] = {analogRead(A1), analogRead(A0)}; // The left LDR must always come before the right LDR
 
   // Length of the LDR's value array and length of LDR's byte value array
   int ldrLength = (sizeof(ldrIntValues) / sizeof(ldrIntValues[0]));
   int ldrByteLength = ldrLength * 2;
-
+  
   // Declares an array which will store the byte values
   byte ldrArray[ldrByteLength];
 
   // Transforms the integers into bytes
   ldrIntToByte(ldrIntValues, ldrArray, ldrLength);
-
-  // Sends the data individually via I²C to the Raspberry Pi
-  for (int i = 0; i < ldrByteLength; i += 2) {
-      byte submissionValuesArray[] = {ldrArray[i], ldrArray[i+1]};
-      Wire.write(submissionValuesArray, 2);
-  }
+ 
+  // Transfers the data through I²C 
+  Wire.write(ldrArray, ldrByteLength);
 }
