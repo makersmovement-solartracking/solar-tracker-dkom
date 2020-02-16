@@ -11,3 +11,4 @@ six==1.14.0
 smbus2==0.3.0
 wcwidth==0.1.8
 zipp==2.2.0
+quick2wire-api==0.0.0.2
