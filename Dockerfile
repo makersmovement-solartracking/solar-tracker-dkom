@@ -1,5 +1,6 @@
 FROM arm32v7/python:3.7-alpine
 
+COPY qemu-arm-static /usr/bin/
 
 COPY . .
 
