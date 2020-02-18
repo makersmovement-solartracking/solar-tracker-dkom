@@ -61,10 +61,10 @@ Solar Tracking Software using a Steper Motor.
 
 ![Connection between the Raspberry Pi and the Stepper Motor.][rasp-stepper]
 
-[rasp-stepper]: https://github.com/makersmovement-solartracking/solar-tracker-dkom/diagrams/raspberry-and-stepper-motor.png "Raspberry and Stepper Motor Connection."
+[rasp-stepper]: https://github.com/makersmovement-solartracking/solar-tracker-dkom/tree/master/diagrams/raspberry-and-stepper-motor.png "Raspberry and Stepper Motor Connection."
 
 #### Raspberry Pi and Arduino I2C Connection
 
 ![I2C Connection between the Raspberry Pi and the Arduino.][rasp-arduino]
 
-[rasp-arduino]: https://github.com/makersmovement-solartracking/solar-tracker-dkom/diagrams/raspberry-and-arduino.png "Raspberry and Arduino I2C connection."
+[rasp-arduino]: https://github.com/makersmovement-solartracking/solar-tracker-dkom/tree/master/diagrams/raspberry-and-arduino.png "Raspberry and Arduino I2C connection."
