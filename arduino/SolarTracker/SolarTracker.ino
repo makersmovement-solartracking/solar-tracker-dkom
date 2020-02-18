@@ -107,12 +107,14 @@ int getStepsSize() {
 // Global Variables
 fptr strategy;
 int (*steps)[4];
+bool nightModeActive;
 
 void setup() {
     Serial.begin(9600);
     strategy = strategies(STRATEGY_NAME);
 
     steps = getStepMode();
+    nightModeActive = false;
 
     for(int i=0; i < 4; i++) {
       pinMode(PINS[i], OUTPUT);
@@ -124,11 +126,15 @@ void loop() {
 
   int LDRValues[] = {analogRead(A1), analogRead(A0)};
 
-  String direction = strategy(LDRValues);
+  nightMode(LDRValues);
+
+  if(nightModeActive == false) {
+    String direction = strategy(LDRValues);
   
-  move(direction);
+    move(direction);
   
-  delay(200);
+    delay(200);
+  }
 }
 
 // Movement related function
@@ -170,5 +176,21 @@ void move(String direction) {
       digitalWrite(PINS[i], 0);
     }
     return;
+  }
+}
+
+void nightMode(int LDRValues[]) {
+  if(LDRValues[0] < 10 && LDRValues[1] < 10) {
+    move("stop");
+    if(nightModeActive == false) {
+      nightModeActive == true;
+      Serial.println("Entering night mode.");
+    }
+    delay(300000);
+  } else {
+    if(nightModeActive == true) {
+      Serial.println("Exiting night mode.");
+      nightModeActive = false;
+    }
   }
 }
