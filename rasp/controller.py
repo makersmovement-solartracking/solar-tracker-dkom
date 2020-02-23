@@ -113,7 +113,7 @@ class Movement(Enum):
             steps {list} -- 2D list of the steps
         """
 
-        for halfstep in reversed(range(len(steps))):
+        for halfstep in range(len(steps)):
 
             for pin in range(len(output_pins)):
         
@@ -133,7 +133,7 @@ class Movement(Enum):
             steps {list} -- 2D list of the steps
         """
 
-        for halfstep in range(len(steps)):
+        for halfstep in reversed(range(len(steps))):
 
             for pin in range(len(output_pins)):
         
