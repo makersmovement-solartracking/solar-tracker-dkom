@@ -3,7 +3,7 @@ from solar_tracker import SolarTracker
 
 if __name__ == "__main__":
     ARDUINO_ADDRESS = 0X08
-    ACCEPTABLE_DEVIATION = getenv("ACCEPTABLE_DEVIATION", 50)
+    ACCEPTABLE_DEVIATION = int(getenv("ACCEPTABLE_DEVIATION", 50))
     OUTPUT_PINS = [21, 20, 16, 12]
     STEP_MODE = "halfstep"
     LDR_COUNT = 2
