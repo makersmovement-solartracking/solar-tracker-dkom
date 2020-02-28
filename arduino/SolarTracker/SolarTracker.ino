@@ -124,6 +124,7 @@ void setup() {
 
 void loop() {
 
+  // Port A1 -> Left LDR; Port A0 -> Right LDR
   int LDRValues[] = {analogRead(A1), analogRead(A0)};
 
   nightMode(LDRValues);
@@ -148,8 +149,8 @@ void move(String direction) {
 
   int stepsSize = getStepsSize();
   
-  if(direction == "right") {
-    Serial.println("Rotating - Clockwise.");
+  if(direction == "left") {
+    Serial.println("Rotating - Counter-Clockwise.");
     for(int i=0; i < stepsSize; i++) {
       for(int j=0; j < 4; j++) {
         digitalWrite(PINS[j], steps[i][j]);
@@ -159,8 +160,8 @@ void move(String direction) {
     return;
   }
 
-  if(direction == "left") {
-    Serial.println("Rotating - Counter-Clockwise.");
+  if(direction == "right") {
+    Serial.println("Rotating - Clockwise.");
     for(int i=(stepsSize - 1); i >= 0; i--) {
       for(int j=0; j < 4; j++) {
         digitalWrite(PINS[j], steps[i][j]);
